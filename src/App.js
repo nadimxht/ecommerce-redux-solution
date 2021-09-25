@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="container">
     
-     <UserList data={[]} func={} />
+     <UserList data={Users} func={sayHello} />
     </div>
   );
 }
