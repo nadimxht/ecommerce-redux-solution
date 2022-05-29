@@ -1,7 +1,20 @@
 .App {
-  text-align: center;
+ 
+  
 }
-
+*{
+  background-color:#f5efe8;
+ 
+}
+.row , .Menu , .Mode ,.side {
+  border: 1px solid #efe3d8;
+}
+.title{
+  
+  font-size: 92px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-variant: inherit;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

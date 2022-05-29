@@ -1,25 +1,35 @@
-import './App.css';
-import Users from './components/Users'
+import React from 'react'
+import {useEffect,useState} from 'react'
+import axios from 'axios'
+import ListProducts from './components/ListProducts';
+import {useSelector} from 'react-redux'
 
+import Cart from './components/Cart';
 function App() {
-  const Data = [
-    {
-      fullName:"nadim",
-      profession:"xxx", 
-    },
-    {
-      fullName:"amine",
-      profession:"xxx", 
-    },
-    {
-      fullName:"lina",
-      profession:"xxx", 
+  const [products,setProducts]=useState([]);
+  const [loader,setLoader]=useState(true);
+  const ProductsInCart = useSelector(state=>state)
+  useEffect(()=>{
+    const getData = async()=>{
+      await axios.get("https://fakestoreapi.com/products").then((response)=>{
+        setProducts(response.data);
+        setLoader(false);
+      }
+  ).catch((err)=>
+  console.log(err))
     }
-  ];
-  
+  getData();
+  },[])
+
   return (
-    <div className="container">
-      <Users UsersData={Data} title="List of Users" />
+    <div className="App container-fluid">
+      {
+        loader ? 'loading' : <ListProducts  data={products} />
+      }
+      <br></br>
+      <h1>Cart :</h1>
+      <Cart products={ProductsInCart}/>
+      
     </div>
   );
 }
